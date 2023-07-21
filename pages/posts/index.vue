@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import PostCard from "../../components/PostCards/index"
+import PostCards from "../../components/PostCards/index"
 
 interface PostsDataModel {
   createdAt: string,
@@ -18,5 +18,5 @@ const { data } = await useFetch<PostModel>('/api/data')
 </script>
 
 <template>
-  <PostCard :posts="data"/>
+  <PostCards :posts="data"/>
 </template>

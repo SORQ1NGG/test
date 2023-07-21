@@ -3,7 +3,8 @@
 const router = useRouter()
 
 interface DataInterface {
-  description: string
+  description: string,
+  title: string,
 }
 
 interface IProps {
@@ -11,12 +12,16 @@ interface IProps {
 }
 
 const props = defineProps<IProps>()
+
 </script>
 
 <template>
   <button class="btn" @click="router.back()">
     Back
   </button>
+  <h1 class="title">
+    {{ props.post.title }}
+  </h1>
   <div class="post-detail">
     <h2 class="post-detail_title">Description</h2>
     <p class="post-detail_description">{{ props.post.description }}</p>
