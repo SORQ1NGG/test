@@ -21,11 +21,11 @@ const limitCount = (event: number) => {
 </script>
 
 <template>
-  <button
+  <NuxtLink
     v-for="pageNumber in paginationComputed"
     :key="pageNumber"
+    role="button"
     class="pagination-btn"
-    aria-label="button"
     :class="currentPage === pageNumber ? 'active-page': null"
   >
     <span
@@ -41,7 +41,7 @@ const limitCount = (event: number) => {
     >
       {{ pageNumber }}
     </span>
-  </button>
+  </NuxtLink>
   <div class="items-per-page">
     <span>Posts per page: </span>
     <select
