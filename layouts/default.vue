@@ -1,12 +1,10 @@
-<script setup>
-  import HeaderSection from '../components/HeaderSection/index'
-</script>
+<script setup></script>
 
 <template>
-<HeaderSection />
-  <main class="main">
-    <div class="container">
-      <slot/>
+  <HeaderSection />
+  <main class="main-page">
+    <div class="main-page--wrapper container">
+      <slot />
     </div>
   </main>
 </template>

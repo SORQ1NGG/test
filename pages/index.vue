@@ -1,18 +1,30 @@
 <template>
   <section class="hero-section">
     <div class="hero-inner">
-      <h2 class="title">Home</h2>
-      <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut corporis ducimus itaque
+      <h2 class="title">
+        Home
+      </h2>
+      <p class="description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut corporis ducimus itaque
         maiores nulla
-        perferendis repellendus sequi ut veniam!</p>
-      <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut corporis ducimus itaque
+        perferendis repellendus sequi ut veniam!
+      </p>
+      <p class="description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut corporis ducimus itaque
         maiores nulla
-        perferendis repellendus sequi ut veniam!</p>
-      <p class="description">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut corporis ducimus itaque
+        perferendis repellendus sequi ut veniam!
+      </p>
+      <p class="description">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi aut corporis ducimus itaque
         maiores nulla
-        perferendis repellendus sequi ut veniam!</p>
+        perferendis repellendus sequi ut veniam!
+      </p>
     </div>
-    <img src="~/assets/image/post-office.jpg" alt="post office image" class="hero-img">
+    <img
+      src="~/assets/image/post-office.jpg"
+      alt="post office image"
+      class="hero-img"
+    >
   </section>
 </template>
 
