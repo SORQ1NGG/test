@@ -4,17 +4,32 @@
   "scripts": {
     "build": "nuxt build",
     "dev": "nuxt dev",
+    "lint": "eslint .",
+    "test": "vitest",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
+    "@nuxt/eslint-config": "^0.2.0",
+    "@nuxt/test-utils": "^3.7.0",
+    "@nuxtjs/eslint-module": "^4.1.0",
+    "@testing-library/jest-dom": "^6.1.2",
+    "@testing-library/vue": "^7.0.0",
     "@types/node": "^18.16.19",
-    "nuxt": "^3.6.5"
+    "@types/testing-library__jest-dom": "^6.0.0",
+    "@vitejs/plugin-vue": "^4.3.4",
+    "@vue/test-utils": "^2.4.1",
+    "eslint": "8.22.0",
+    "eslint-plugin-nuxt": "^4.0.0",
+    "jsdom": "^22.1.0",
+    "nuxt": "^3.6.5",
+    "vitest": "^0.34.3"
   },
   "dependencies": {
     "sass": "^1.64.0",
-    "sass-loader": "^13.3.2"
+    "sass-loader": "^13.3.2",
+    "vite": "^4.4.9"
   }
 }
