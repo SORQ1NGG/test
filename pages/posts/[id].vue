@@ -13,8 +13,6 @@ const API_URI: string = `https://6082e3545dbd2c001757abf5.mockapi.io/qtim-test-w
 
 const {data: post} = await useFetch<IPost>(API_URI, {key: id})
 
-console.log(post)
-
 if (!post.value) {
     throw createError({statusCode: 404, statusMessage: 'Post not found'})
 }
