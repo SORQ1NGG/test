@@ -32,6 +32,12 @@ pnpm run dev
 yarn dev
 ```
 
+## Test
+
+```
+npm run test
+```
+
 ## Production
 
 Build the application for production:
