@@ -1,26 +1,63 @@
 <script setup lang="ts">
+import { computed } from 'vue'
+import { pagination } from '../../utils/helpers/pagination.js'
+import { IPropsPagination } from './types'
 
-interface IProps {
-  totalPages: number,
-  currentPage: number
+const props = defineProps<IPropsPagination>()
+
+const emit = defineEmits<{
+  page: [pageNumber: number]
+  limit: [value: number]
+}>()
+
+const paginationComputed = computed(() => {
+    return props.totalPages ? pagination(props.currentPage, props.totalPages) : 0
+})
+
+const limitCount = (event: number) => {
+    emit('limit', event)
 }
-
-const props = defineProps<IProps>()
-
-const emit = defineEmits<{page: [pageNumber: number]}>()
 
 </script>
 
 <template>
   <button
-      v-for="pageNumber in props.totalPages"
-      :key="pageNumber.id"
-      @click="emit('page', pageNumber)"
-      class="pagination-btn"
-      :class="currentPage === pageNumber ? 'active-page': null"
+    v-for="pageNumber in paginationComputed"
+    :key="pageNumber"
+    class="pagination-btn"
+    aria-label="button"
+    :class="currentPage === pageNumber ? 'active-page': null"
   >
-    {{ pageNumber }}
+    <span
+      v-if="pageNumber === '...'"
+      class="dots"
+    >
+      {{ pageNumber }}
+    </span>
+    <span
+      v-else
+      class="btn-link"
+      @click="emit('page', pageNumber)"
+    >
+      {{ pageNumber }}
+    </span>
   </button>
+  <div class="items-per-page">
+    <span>Posts per page: </span>
+    <select
+      :value="itemPerPage"
+      class="select select-items"
+      @input="limitCount($event.target.value)"
+    >
+      <option
+        v-for="limitSizes in props.itemPerPageCount"
+        :key="limitSizes"
+        :value="limitSizes"
+      >
+        {{ limitSizes }}
+      </option>
+    </select>
+  </div>
 </template>
 
-<style src="./style.scss" lang="scss" scoped/>
+<style src="./style.scss" lang="scss" scoped />

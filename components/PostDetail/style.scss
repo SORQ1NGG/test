@@ -8,6 +8,11 @@
     text-align: justify;
     line-height: 25px;
   }
+
+    &_content {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 .title {
