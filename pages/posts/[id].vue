@@ -1,23 +1,26 @@
 <script setup lang="ts">
-import PostDetail from '../../components/PostDetail/index'
 
-const {id} = useRoute().params
+interface IPost {
+    id: number,
+    description: string,
+    title: string
+}
+
+
+const {id} = useRoute().params as any
 
 const API_URI: string = `https://6082e3545dbd2c001757abf5.mockapi.io/qtim-test-work/posts/${id}`
 
-interface IPost  {
-  id: number,
-  description: string
-}
+const {data: post} = await useFetch<IPost>(API_URI, {key: id})
 
-const {data: post} = await useFetch<IPost>(API_URI)
+console.log(post)
 
 if (!post.value) {
-  throw createError({statusCode: 404, statusMessage: 'Post not found'})
+    throw createError({statusCode: 404, statusMessage: 'Post not found'})
 }
 </script>
 
 <template>
-  <PostDetail :post="post"/>
+  <PostDetail :post="post" />
 </template>
 

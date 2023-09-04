@@ -1,5 +1,9 @@
 <script setup lang="ts">
-import PostCards from "../../components/PostCards/index"
+const totalCount: Ref<number> = ref(0)
+const currentPage: Ref<number> = ref(1)
+const itemsPerPage: Ref<number> = ref(5)
+const resultCount: Ref<number> = ref(0)
+const itemPerPageCount: Ref<number[]> = ref([5, 30, 50, 83])
 
 interface PostsDataModel {
   createdAt: string,
@@ -11,12 +15,84 @@ interface PostsDataModel {
 }
 
 interface PostModel {
-  data: PostsDataModel[]
+  post: PostsDataModel[]
+  length: any
+  slice(index: number, arg1: number): any
 }
 
-const { data } = await useFetch<PostModel>('/api/data')
+const {id} = useRoute().params
+
+const {
+    data,
+    pending,
+    refresh,
+    error,
+} = await useLazyFetch<PostModel>('/api/data', {
+    key: id,
+    server: false,
+})
+
+const paginate = computed(() => {
+    if (!data.value || !data.value.length) return
+
+    resultCount.value = data.value.length
+    if (currentPage.value >= totalPages.value) {
+        currentPage.value = totalPages.value
+    }
+    const index: number = (currentPage.value * itemsPerPage.value) - itemsPerPage.value
+    return data.value.slice(index, index + itemsPerPage.value)
+})
+
+const updateLimitCount = (limit: number) => {
+    itemsPerPage.value = Number(limit)
+    refresh()
+}
+
+const totalPages = computed<number>(() => {
+    return totalCount.value = Math.ceil(resultCount.value / itemsPerPage.value)
+})
+
+const setPage = (pageNumber: number): void => {
+    currentPage.value = pageNumber
+    refresh()
+}
+
 </script>
 
 <template>
-  <PostCards :posts="data"/>
+  <div v-if="pending">
+    Loading...
+  </div>
+  <div v-else-if="error">
+    {{ error.message }}
+  </div>
+  <PostCards
+    v-else
+    :posts="paginate"
+    :items-per-page="itemsPerPage"
+    :result-count="resultCount"
+    :current-page="currentPage"
+  />
+  <div
+    data-testid="pagination"
+    class="pagination"
+  >
+    <Pagination
+      :total-pages="totalCount"
+      :current-page="currentPage"
+      :item-per-page-count="itemPerPageCount"
+      :item-per-page="itemsPerPage"
+      @page="setPage"
+      @limit="updateLimitCount"
+    />
+  </div>
 </template>
+
+<style lang="scss" scoped>
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20rem;
+}
+</style>
