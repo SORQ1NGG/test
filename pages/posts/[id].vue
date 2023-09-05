@@ -11,7 +11,7 @@ const {id} = useRoute().params as any
 
 const API_URI: string = `https://6082e3545dbd2c001757abf5.mockapi.io/qtim-test-work/posts/${id}`
 
-const {data: post} = await useFetch<IPost>(API_URI, {key: id})
+const {data: post, pending} = await useFetch<IPost>(API_URI, {key: id})
 
 if (!post.value) {
     throw createError({statusCode: 404, statusMessage: 'Post not found'})
@@ -19,6 +19,12 @@ if (!post.value) {
 </script>
 
 <template>
-  <PostDetail :post="post" />
+  <div v-if="pending">
+    Loading....
+  </div>
+  <PostDetail
+    v-else
+    :post="post"
+  />
 </template>
 
