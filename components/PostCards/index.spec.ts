@@ -1,7 +1,7 @@
 import { render } from '@testing-library/vue'
 import '@testing-library/jest-dom'
 import { describe, it, expect } from 'vitest'
-import PostCards from '../../components/PostCards/index.vue'
+import PostCards from './index.vue'
 
 const mockPosts = [
     {

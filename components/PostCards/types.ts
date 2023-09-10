@@ -9,4 +9,5 @@ interface PostsInterface {
 
 export interface IPropsInterface {
     posts: PostsInterface[],
+    starting: boolean,
 }

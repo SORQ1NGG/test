@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { IPropsInterface } from './types'
+import {IPropsInterface} from './types'
 
 const props = defineProps<IPropsInterface>()
 
@@ -20,10 +20,11 @@ const formatDate = (v: string): String => {
       class="post-wrapper"
     >
       <div class="post-img">
-        <img
-          :src="post.image ? '_nuxt/assets/image/no-image.jpg' : null"
-          alt="Blog Post Image"
-        >
+        <UIImage
+          :alt="post.title"
+          :src="post.image"
+          :circle-loader="props.starting"
+        />
       </div>
       <div class="post-info">
         <h2 class="post-title">
