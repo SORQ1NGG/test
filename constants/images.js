@@ -1,0 +1,1 @@
+export const NO_IMG_SRC = '_nuxt/assets/image/no-image.jpg'
